@@ -20,7 +20,7 @@ DRV8834 stepper(MOTOR_STEPS, DIR, STEP, SLEEP, M0, M1);
 unsigned long TimeToStop = 0, NextStateTime = 0;
 
 void setup() {
-    stepper.begin(1000, MICROSTEPS);
+    stepper.begin(100, MICROSTEPS);
     stepper.disable();
     
     pinMode(LED, OUTPUT);
@@ -58,7 +58,7 @@ void loop() {
     
     if(State == 2){
       if(LastState == 1) stepper.enable();
-      stepper.rotate(10);
+      stepper.rotate(-10);
     }
 
     if(State == 0 && LastState == 2) stepper.disable();
