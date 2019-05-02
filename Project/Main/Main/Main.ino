@@ -20,7 +20,7 @@ DRV8834 stepper(MOTOR_STEPS, DIR, STEP, SLEEP, M0, M1);
 unsigned long TimeToStop = 0, NextStateTime = 0;
 
 void setup() {
-    stepper.begin(100, MICROSTEPS);
+    stepper.begin(200, MICROSTEPS);
     stepper.disable();
     
     pinMode(LED, OUTPUT);
@@ -34,7 +34,7 @@ void setup() {
     NextStateTime = millis();
 }
 
-int State = 0;
+int State = 2;
 //State 0 waiting for button press, State 1 when button press
 //State 1 wait 1 second before turning on the motors
 //State 2 Running motors, State 0 when button held for 1 second
@@ -58,7 +58,7 @@ void loop() {
     
     if(State == 2){
       if(LastState == 1) stepper.enable();
-      stepper.rotate(-10);
+      stepper.rotate(10);
     }
 
     if(State == 0 && LastState == 2) stepper.disable();
