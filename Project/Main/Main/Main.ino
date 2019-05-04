@@ -42,6 +42,8 @@ int State = 10;
 
 int ButtonDownBefore = 0, LastState = State;
 void loop() {
+
+    Serial.write(State);
     
     stepper.disable();
     if(digitalRead(BUTTON) == 1 && State == 0 && ButtonDownBefore == 0) State = 1;
@@ -63,11 +65,11 @@ void loop() {
     if(State == 2){
       TimeInState2 = millis() - TimeStartState2;
 
-      if(TimeInState2 < 1000) stepper.setRPM(100);
-      else stepper.setRPM(200);
+      if(TimeInState2 < 60000) stepper.setRPM(50);
+      else stepper.setRPM(100);
       
       if(LastState == 1) stepper.setEnableActiveState(1);
-      stepper.rotate(10);
+      stepper.rotate(1000);
     }
 
     if(State == 0 && LastState == 2) stepper.setEnableActiveState(0);
