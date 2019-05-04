@@ -65,8 +65,8 @@ void loop() {
     if(State == 2){
       TimeInState2 = millis() - TimeStartState2;
 
-      if(TimeInState2 < 60000) stepper.setRPM(50);
-      else stepper.setRPM(100);
+      if(TimeInState2 < 60000) stepper.setRPM(70);
+      else stepper.setRPM(70);
       
       if(LastState == 1) stepper.setEnableActiveState(1);
       stepper.rotate(1000);
